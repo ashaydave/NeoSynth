@@ -71,7 +71,7 @@ void SynthzAudioProcessorEditor::handleNoteOn(juce::MidiKeyboardState* keyState,
     //audioProcessor.oscillator.noteOn(m.getMidiNoteInHertz(m.getNoteNumber()));
     //getParentComponent().audioProcessor
     //postMessageToList(m, "On-Screen Keyboard");
-    audioProcessor.oscillators.push_back(*(new Oscillator(audioProcessor.getSampleRate(), audioProcessor.getNumOutputChannels(), audioProcessor.samplesPerBlock, m.getMidiNoteInHertz(m.getNoteNumber()),m.getNoteNumber())));
+    audioProcessor.oscillators.push_back((new Oscillator(audioProcessor.getSampleRate(), audioProcessor.getNumOutputChannels(), audioProcessor.samplesPerBlock, m.getMidiNoteInHertz(m.getNoteNumber()),m.getNoteNumber())));
 
 }
 
@@ -86,11 +86,12 @@ void SynthzAudioProcessorEditor::handleNoteOff(juce::MidiKeyboardState* keyState
     {
         //if(oscillators[it].)
         //DBG(juce::String(oscillators[i].fOsc) + " zozododo " + juce::String(currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber())));
-        if (audioProcessor.oscillators[i].noteNumber == m.getNoteNumber())
+        if (audioProcessor.oscillators[i]->noteNumber == m.getNoteNumber())
         {
             //delete oscillators[i];
 
             DBG("\n\nopopopopopopoopopopopopopopopopopo\n\n");
+            delete audioProcessor.oscillators[i];
             audioProcessor.oscillators.erase(audioProcessor.oscillators.begin() + i);
         }
     }

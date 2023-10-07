@@ -162,7 +162,7 @@ void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
         {
             //DBG("\n\n\n" + currentMessage.getDescription() + "\n" + juce::String(currentMessage.getNoteNumber()) + "\n\n\n");
             //oscillator.noteOn(currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber()));
-            oscillators.push_back(*(new Oscillator(getSampleRate(), getNumOutputChannels(),buffer.getNumSamples(), currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber()),currentMessage.getNoteNumber())));
+            oscillators.push_back((new Oscillator(getSampleRate(), getNumOutputChannels(),buffer.getNumSamples(), currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber()),currentMessage.getNoteNumber())));
             //oscillators.push_back(*(new Oscillator(getSampleRate(), getNumOutputChannels(), buffer.getNumSamples(), currentMessage.getNoteNumber())));
 
         }
@@ -173,13 +173,14 @@ void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
             for (int i = 0; i <oscillators.size(); i++)
             {
                 //if(oscillators[it].)
-                DBG(juce::String(oscillators[i].noteNumber) + " zozododo " + juce::String(currentMessage.getNoteNumber()));
+                DBG(juce::String(oscillators[i]->noteNumber) + " zozododo " + juce::String(currentMessage.getNoteNumber()));
                 //if (oscillators[i].fOsc == currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber()))
-                if (oscillators[i].noteNumber == currentMessage.getNoteNumber())
+                if (oscillators[i]->noteNumber == currentMessage.getNoteNumber())
                 {
                     //delete oscillators[i];
 
                     DBG("\n\nopopopopopopoopopopopopopopopopopo\n\n");
+                    delete oscillators[i];
                     oscillators.erase(oscillators.begin()+i);
                 }
             }
@@ -187,7 +188,7 @@ void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     }
 
     for (int i = 0; i < oscillators.size(); i++)
-        oscillators[i].processBlock(buffer);
+        oscillators[i]->processBlock(buffer);
     
    // oscillator.processBlock(buffer);
 }
