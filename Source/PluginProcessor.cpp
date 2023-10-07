@@ -96,6 +96,7 @@ void SynthzAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     //oscillator.prepareToPlay(sampleRate,samplesPerBlock,getNumOutputChannels());
+    tempBuffer = juce::AudioBuffer<float>(getNumOutputChannels(), samplesPerBlock);
 }
 
 void SynthzAudioProcessor::releaseResources()
@@ -130,10 +131,10 @@ bool SynthzAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) c
 }
 #endif
 
-void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumInputChannels = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     samplesPerBlock = buffer.getNumSamples();
     // In case we have more outputs than inputs, this code clears any output
@@ -143,7 +144,11 @@ void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
+    {
+        buffer.clear(i, 0, buffer.getNumSamples());
+        tempBuffer.clear(i, 0, tempBuffer.getNumSamples());
+    }
+        
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
@@ -186,9 +191,27 @@ void SynthzAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
             }
         }
     }
-
+    //juce::AudioBuffer<float> dozo,bozo;
+    //dozo= juce::AudioBuffer<float>(buffer.getNumChannels(), buffer.getNumChannels());
+    //bozo = juce::AudioBuffer<float>(buffer.getNumChannels(), buffer.getNumChannels());
+    //dozo.clear();
+    //bozo.clear();
+    
+    //dozo.addFrom(0,0,dozo.getReadPointer(0), 0)
+    //buffer.copyFrom(0, 0, dozo, 480);
+    //buffer.makeCopyOf(dozo, true);
     for (int i = 0; i < oscillators.size(); i++)
-        oscillators[i]->processBlock(buffer);
+    {
+        tempBuffer=oscillators[i]->processBlock(buffer);
+        for (int j = 0;j < tempBuffer.getNumChannels(); j++)
+        {
+            buffer.addFrom(j, 0, tempBuffer.getReadPointer(j),tempBuffer.getNumSamples(), 0.75 / oscillators.size());
+        }
+    }
+    /*for (int j = 0; j < buffer.getNumChannels(); j++)
+    {
+        buffer.copyFrom(j, 0, bozo.getReadPointer(j),bozo.getNumSamples())
+    }*/
     
    // oscillator.processBlock(buffer);
 }

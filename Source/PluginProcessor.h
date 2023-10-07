@@ -58,6 +58,7 @@ public:
     //Oscillator oscillator;
     std::vector<Oscillator*> oscillators;
     float samplesPerBlock=0.0f;
+    juce::AudioBuffer<float> tempBuffer;
 private:
     //==============================================================================
     

@@ -20,7 +20,7 @@ Oscillator::Oscillator(float sampleRate, float numChannels,float samplesPerBlock
     this->noteNumber = noteNumber;
     buff = 0.0f;
     inc = 0.0f;
-    
+    this->oscBuffer = juce::AudioBuffer<float>(numChannels, samplesPerBlock);
     onOff = 1.0f;
 }
 
@@ -38,8 +38,9 @@ void Oscillator::prepareToPlay(float sampleRate, int samplesPerBlock, int numOut
     onOff = 0.0f;
 }
 
-void Oscillator::processBlock(juce::AudioBuffer<float>& buffer)
+juce::AudioBuffer<float> Oscillator::processBlock(juce::AudioBuffer<float>& buffer)
 {
+    oscBuffer.clear();
 
     for (int sample = 0; sample < buffer.getNumSamples();sample++)
     {
@@ -58,12 +59,12 @@ void Oscillator::processBlock(juce::AudioBuffer<float>& buffer)
             case 1:break;
             case 2:
             }*/
-                buffer.getWritePointer(channel)[sample] = onOff * std::sin(2 * juce::MathConstants<float>::pi * buff-1);
+                oscBuffer.getWritePointer(channel)[sample] = onOff * std::sin(2 * juce::MathConstants<float>::pi * buff-1);
             //buffer.getWritePointer(channel)[sample] = onOff *(2*buff - 1);
             
         }
     }
-    //return buffer;
+    return oscBuffer;
 
 }
 
