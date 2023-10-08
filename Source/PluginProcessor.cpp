@@ -205,7 +205,7 @@ void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
         tempBuffer=oscillators[i]->processBlock(buffer);
         for (int j = 0;j < tempBuffer.getNumChannels(); j++)
         {
-            buffer.addFrom(j, 0, tempBuffer.getReadPointer(j),tempBuffer.getNumSamples(), 0.75 / oscillators.size());
+            buffer.addFrom(j, 0, tempBuffer.getReadPointer(j),tempBuffer.getNumSamples(), 0.5 / oscillators.size());
         }
     }
     /*for (int j = 0; j < buffer.getNumChannels(); j++)

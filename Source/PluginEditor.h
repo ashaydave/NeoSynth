@@ -31,6 +31,7 @@ public:
     void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message) override;
     void handleNoteOff(juce::MidiKeyboardState*, int midiChannel, int midiNoteNumber, float /*velocity*/) override;
     void handleNoteOn(juce::MidiKeyboardState*, int /*midiChannel*/, int /*midiNoteNumber*/, float /*velocity*/) override;
+    
 private:
 
     juce::MidiKeyboardState keyboardState;
@@ -41,5 +42,7 @@ private:
     SynthzAudioProcessor& audioProcessor;
     //VirtualKeyboardComponent virtualKeyboardComponent;
     juce::Path p;
+    juce::PopupMenu m;
+    juce::TextButton oscTypeButton;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthzAudioProcessorEditor)
 };

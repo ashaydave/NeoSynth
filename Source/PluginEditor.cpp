@@ -28,6 +28,16 @@ SynthzAudioProcessorEditor::SynthzAudioProcessorEditor (SynthzAudioProcessor& p)
     addAndMakeVisible(keyboardComponent);
     keyboardState.addListener(this);
 
+    
+    m.addItem(1, "Sine");
+    m.addItem(2, "Saw");
+    m.addItem(3, "Square");
+    m.addItem(4, "Triangle");
+
+    addAndMakeVisible(oscTypeButton);
+    oscTypeButton.setButtonText("Oscillator");
+    //oscTypeButton.onClick([{}]);
+
     setSize (400, 300);
 }
 
@@ -47,6 +57,14 @@ void SynthzAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour(juce::Colours::hotpink);
     //g.fillPath(p);
+    
+    m.showMenuAsync(juce::PopupMenu::Options(), [](int result) {
+        if (result == 0)
+        {
+
+        }
+
+        });
 
 }
 
