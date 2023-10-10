@@ -7,21 +7,56 @@
 */
 
 #include "PluginProcessor.h"
-#include "PluginEditor.h"
+//#include "PluginEditor.h"
 
 //==============================================================================
 SynthzAudioProcessor::SynthzAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     : foleys::MagicProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), parameters(*this, nullptr, juce::Identifier("Ripple"), {
+         std::make_unique<juce::AudioParameterInt>("synthType","SynthType",0,3,0),
+         std::make_unique<juce::AudioParameterInt>("cutOff","CutOff",10.f,100.f,10.f),
+         std::make_unique<juce::AudioParameterFloat>("resA","ResA",-1.f,1.f,0.5f),
+         std::make_unique<juce::AudioParameterFloat>("resB","ResB",0.01f,1.f,1.0f),
+         std::make_unique<juce::AudioParameterFloat>("gainDb","Gain",-24.f,3.f,0.f),
+         std::make_unique<juce::AudioParameterBool>("combLfoOn","CombLfo",true),
+         std::make_unique<juce::AudioParameterBool>("gainLfoOn","GainLfo",true),
+         std::make_unique<juce::AudioParameterInt>("lfoFreq","LfoFreq",1,20,2),
+         std::make_unique<juce::AudioParameterChoice>("combType","CombType",juce::StringArray("Notch I","Notch II","Peak I","Peak II"),2),
+         std::make_unique<juce::AudioParameterFloat>("combMod","CombMod",0.0f,10.0f,2.0f),
+         std::make_unique<juce::AudioParameterFloat>("gainMod","GainMod",0.0f,10.0f,3.0f)
+                           })
+
 #endif
 {
+    magicState.setGuiValueTree(BinaryData::Synthz_xml, BinaryData::Synthz_xmlSize);
+    analyzer = magicState.createAndAddObject<foleys::MagicAnalyser>("input");
+    levelMeter = magicState.createAndAddObject<foleys::MagicLevelSource>("levelInput");
+
+    combFilter = RippleComb();
+    gainMultiplier = RippleGain();
+
+    cutOff = parameters.getRawParameterValue("cutOff");
+    resA = parameters.getRawParameterValue("resA");
+    resB = parameters.getRawParameterValue("resB");
+    gainDb = parameters.getRawParameterValue("gainDb");
+
+    combLfoOn = parameters.getRawParameterValue("combLfoOn");
+    gainLfoOn = parameters.getRawParameterValue("gainLfoOn");
+    lfoFreq = parameters.getRawParameterValue("lfoFreq");
+
+    combType = parameters.getRawParameterValue("combType");
+
+    combMod = parameters.getRawParameterValue("combMod");
+    gainMod = parameters.getRawParameterValue("gainMod");
+
+    FOLEYS_SET_SOURCE_PATH(__FILE__);
 }
 
 SynthzAudioProcessor::~SynthzAudioProcessor()
@@ -96,7 +131,12 @@ void SynthzAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     //oscillator.prepareToPlay(sampleRate,samplesPerBlock,getNumOutputChannels());
+    analyzer->prepareToPlay(sampleRate, samplesPerBlock);
+    levelMeter->setupSource(getTotalNumOutputChannels(), sampleRate, 500);
     tempBuffer = juce::AudioBuffer<float>(getNumOutputChannels(), samplesPerBlock);
+
+    gainMultiplier.prepareToPlay(sampleRate);
+    combFilter.prepareToPlay(sampleRate, samplesPerBlock, getNumOutputChannels());
 }
 
 void SynthzAudioProcessor::releaseResources()
@@ -212,38 +252,50 @@ void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     {
         buffer.copyFrom(j, 0, bozo.getReadPointer(j),bozo.getNumSamples())
     }*/
-    
+    analyzer->pushSamples(buffer);
+    levelMeter->pushSamples(buffer);
    // oscillator.processBlock(buffer);
+
+    //FX Processing
+    combFilter.processBlock(buffer, *cutOff, *resB, *resA, *combType, *lfoFreq, *combLfoOn, *combMod);
+    gainMultiplier.processBlock(buffer, *gainDb, *lfoFreq, *gainLfoOn, *gainMod);
 }
 
 //==============================================================================
-bool SynthzAudioProcessor::hasEditor() const
-{
-    return true; // (change this to false if you choose to not supply an editor)
-}
+//bool SynthzAudioProcessor::hasEditor() const
+//{
+//    return true; // (change this to false if you choose to not supply an editor)
+//}
 
-juce::AudioProcessorEditor* SynthzAudioProcessor::createEditor()
-{
-    return new SynthzAudioProcessorEditor (*this);
-    //return new juce::GenericAudioProcessorEditor(*this);
-}
+//juce::AudioProcessorEditor* SynthzAudioProcessor::createEditor()
+//{
+//    return new SynthzAudioProcessorEditor (*this);
+//    //return new juce::GenericAudioProcessorEditor(*this);
+//}
 
 //==============================================================================
-void SynthzAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
-{
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
-}
-
-void SynthzAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
-}
+//void SynthzAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+//{
+//    // You should use this method to store your parameters in the memory block.
+//    // You could do that either as raw data, or use the XML or ValueTree classes
+//    // as intermediaries to make it easy to save and load complex data.
+//}
+//
+//void SynthzAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+//{
+//    // You should use this method to restore your parameters from this memory block,
+//    // whose contents will have been created by the getStateInformation() call.
+//}
 
 //==============================================================================
 // This creates new instances of the plugin..
+//juce::ValueTree SynthzAudioProcessor::createGuiValueTree()
+//{
+//   //
+//   // return 
+//}
+
+
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SynthzAudioProcessor();
