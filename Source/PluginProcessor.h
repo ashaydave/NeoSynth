@@ -15,7 +15,7 @@
 //==============================================================================
 /**
 */
-class SynthzAudioProcessor  : public foleys::MagicProcessor
+class SynthzAudioProcessor  : public foleys::MagicProcessor,public juce::MidiKeyboardStateListener
                             #if JucePlugin_Enable_ARA
                              , public juce::AudioProcessorARAExtension
                             #endif
@@ -54,6 +54,10 @@ public:
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
 
+        //void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message) override;
+    void handleNoteOff(juce::MidiKeyboardState*, int midiChannel, int midiNoteNumber, float /*velocity*/) override;
+    void handleNoteOn(juce::MidiKeyboardState*, int /*midiChannel*/, int /*midiNoteNumber*/, float /*velocity*/) override;
+    
     //==============================================================================
    // void getStateInformation (juce::MemoryBlock& destData) override;
     //void setStateInformation (const void* data, int sizeInBytes) override;
@@ -61,11 +65,16 @@ public:
     std::vector<Oscillator*> oscillators;
     float samplesPerBlock=0.0f;
     juce::AudioBuffer<float> tempBuffer;
+    void processMidiOn(juce::MidiMessage);
+    void processMidiOff(juce::MidiMessage);
 private:
     //==============================================================================
     foleys::MagicPlotSource* analyzer = nullptr;
     foleys::MagicLevelSource* levelMeter=nullptr;
 
+
+    //juce::MidiKeyboardStateListener stateListener;
+    juce::MidiKeyboardState keyboardState;
     //FX
 
     RippleComb combFilter;
@@ -81,7 +90,7 @@ private:
     std::atomic<float>* resB = nullptr;
 
     std::atomic<float>* gainDb = nullptr;
-
+    std::atomic<float>* combOn = nullptr;
     std::atomic<float>* combLfoOn = nullptr;
     std::atomic<float>* gainLfoOn = nullptr;
     std::atomic<float>* lfoFreq = nullptr;
@@ -92,5 +101,6 @@ private:
     std::atomic<float>* gainMod = nullptr;
     std::atomic<float>* combMod = nullptr;
 
+    //juce::MidiKeyboardState &midiKeyBoardState;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthzAudioProcessor)
 };
