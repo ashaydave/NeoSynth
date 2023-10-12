@@ -220,16 +220,19 @@ void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
         }
     }
     
-    //Analysis
-    analyzer->pushSamples(buffer);
-    levelMeter->pushSamples(buffer);
+
    
 
     //FX Processing
     if(*combOn)
         combFilter.processBlock(buffer, *cutOff, *resB, *resA, *combType, *combLfoFreq, *combLfoOn, *combMod);
+
     gainMultiplier.processBlock(buffer, *gainDb, *gainLfoFreq, *gainLfoOn, *gainMod);
    
+
+    //Analysis
+    analyzer->pushSamples(buffer);
+    levelMeter->pushSamples(buffer);
 }
 
 //=============================================================================

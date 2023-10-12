@@ -26,53 +26,129 @@
     </Style>
   </Styles>
   <View id="root" resizable="1" resize-corner="1" flex-direction="column"
-        margin="0" padding="0">
-    <View class="parameters nomargin" margin="0">
-      <View id="CombModule" flex-direction="column" padding="-5" border="1"
-            pos-x="0%" pos-y="0%" pos-width="50%" pos-height="100%" margin="2">
-        <View margin="0" padding="0" lookAndFeel="FoleysFinest" border="5">
-          <TextButton onClick="combOnButton" id="combOn"/>
+        margin="0" padding="0" focus-container="focus-container" width="1100"
+        height="900" min-width="900" min-height="700" caption="">
+    <View class="parameters nomargin" margin="0" background-color="081C15">
+      <View flex-direction="column" background-color="081C15">
+        <View flex-grow="1" background-color="081C15"/>
+        <ComboBox parameter="synthType" id="synthType" caption-color="D8F3DC" caption="OSCILLATOR"
+                  background-color="081C15" combo-menu-text-highlight="D8F3DC"
+                  combo-menu-text="D8F3DC" combo-menu-background-highlight="40916C"
+                  combo-menu-background="081C15" combo-focused-outline="1B4332"
+                  combo-arrow="D8F3DC" combo-outline="1B4332" combo-text="D8F3DC"
+                  combo-background="081C15" caption-placement="centred-top" caption-size="50"
+                  combo-button="40916C" lookAndFeel="FoleysFinest" flex-grow="2"
+                  margin="" border-color="D8F3DC" border="" padding=""/>
+        <View flex-grow="2" background-color="081C15" border="" padding=""
+              margin=""/>
+        <View tab-height="" flex-shrink="1" flex-grow="0.5" margin="0" padding="0"
+              background-color="FF081C15" id="gainLfoon">
+          <View background-color="FF081C15" flex-grow="8" margin="0" padding="0"/>
+          <TextButton onClick="gainLfoOnButton" id="gainLfoOn" background-color="FF081C15"
+                      pos-x="15" pos-y="0" pos-width="15" pos-height="22" width=""
+                      margin="1" padding="1" caption="" lookAndFeel="FoleysFinest"
+                      button-off-text="" button-on-color="D8F3DC" button-color="1B4332"/>
+          <View flex-grow="12" background-color="FF081C15" margin="0" padding="0"/>
+        </View>
+        <View margin="0" flex-grow="4" background-color="FF081C15" id="GainModule"
+              pos-y="" pos-x="" border="" padding="">
+          <Slider id="Gain" parameter="gainDb" slider-type="rotary-horizontal-vertical"
+                  slider-textbox="textbox-below" title="" caption="GAIN" padding="0"
+                  border="0" margin="0" caption-color="FFD8F3DC" rotary-fill="FF95D5B2"
+                  rotary-outline="FF40916C" background-color="FF081C15" flex-grow="1.0"
+                  caption-placement="centred-top" slider-text="D8F3DC" slider-text-outline="D8F3DC"
+                  slider-text-highlight="D8F3DC" suffix=" dB"/>
+          <Slider padding="0" border="0" slider-type="rotary-horizontal-vertical"
+                  slider-textbox="textbox-below" caption="LFO" id="gainFOsc" radius=""
+                  flex-shrink="1" margin="0" parameter="gainLfoFreq" flex-grow="1.0"
+                  caption-color="FFD8F3DC" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                  background-color="FF081C15" suffix=" Hz"/>
+          <Slider id="GainRate" parameter="gainMod" slider-type="rotary-horizontal-vertical"
+                  slider-textbox="textbox-below" title="" caption="RATE" padding="0"
+                  border="0" margin="0" caption-color="FFD8F3DC" rotary-fill="FF95D5B2"
+                  rotary-outline="FF40916C" background-color="FF081C15"/>
+        </View>
+      </View>
+      <View id="FXModule" flex-direction="column" pos-x="0%" pos-y="0%" pos-width="50%"
+            pos-height="100%" background-color="FF082821" padding="" margin=""
+            border="">
+        <View tab-height="" flex-shrink="1" flex-grow="2" margin="0" padding="0"
+              background-color="FF081C15" id="blankspace">
+          <View background-color="FF081C15"/>
+          <View flex-grow="20" background-color="FF081C15"/>
+        </View>
+        <View tab-height="" flex-shrink="1" flex-grow="4" margin="0" padding="0"
+              background-color="FF081C15" id="combon" pos-x="0.895522%" pos-y="2.5788%"
+              pos-width="100%" pos-height="10.3152%">
+          <View background-color="FF081C15">
+            <View background-color="FF081C15"/>
+          </View>
+          <TextButton onClick="combOnButton" id="combOn" background-color="FF081C15"
+                      pos-x="15" pos-y="0" pos-width="15" pos-height="22" width=""
+                      margin="1" padding="1" caption="" lookAndFeel="FoleysFinest"
+                      button-off-text="" button-on-color="D8F3DC" button-color="1B4332"/>
+          <View flex-grow="1" background-color="081C15"/>
+          <ComboBox parameter="combType" id="combType" caption="COMB TYPE" caption-color="D8F3DC"
+                    margin="0" padding="0" border="0" background-color="081C15" tab-caption=""
+                    lookAndFeel="FoleysFinest" combo-background="081C15" combo-text="D8F3DC"
+                    combo-outline="1B4332" combo-button="40916C" combo-arrow="D8F3DC"
+                    combo-focused-outline="1B4332" combo-menu-background="081C15"
+                    combo-menu-background-highlight="40916C" combo-menu-text="D8F3DC"
+                    combo-menu-text-highlight="D8F3DC" flex-grow="10"/>
+          <View background-color="FF081C15" flex-grow="2"/>
+        </View>
+        <View flex-grow="1" background-color="081C15" margin="0" padding="0"
+              border="0" pos-x="0.895522%" pos-y="20.0573%" pos-width="100%"
+              pos-height="3.15186%"/>
+        <View lookAndFeel="FoleysFinest" id="CombModule" flex-grow="10" background-color="FF081C15"
+              margin="" padding="" border="">
           <Slider id="resA" caption="RESONANCE" parameter="resA" slider-type="rotary-horizontal-vertical"
                   slider-textbox="no-textbox" flex-grow="5" margin="0" padding="0"
-                  min-height="" border="1"/>
+                  min-height="" border="0" background-color="FF081C15" tab-color="FFFF0000"
+                  lookAndFeel="FoleysFinest" rotary-outline="FF40916C" rotary-fill="FF95D5B2"
+                  slider-track="" slider-thumb="" slider-background="" slider-text=""
+                  caption-color="FFD8F3DC"/>
           <Slider id="combCutOff" caption="COMB CUTOFF" title="" lookAndFeel="FoleysFinest"
                   parameter="cutOff" slider-type="rotary-horizontal-vertical" slider-textbox="no-textbox"
-                  flex-grow="5" margin="0" padding="0" border="1"/>
+                  flex-grow="5" margin="0" padding="0" border="0" caption-color="FFD8F3DC"
+                  rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"/>
         </View>
-        <View margin="0" padding="0" border="">
-          <TextButton id="combLfoOn" onClick="combLfoOnButton"/>
-          <Slider flex-grow="5" padding="0" border="1" slider-type="rotary-horizontal-vertical"
+        <View tab-height="" flex-shrink="1" flex-grow="1.5" margin="0" padding="0"
+              background-color="FF081C15" id="combLfoon">
+          <View background-color="FF081C15" flex-grow="2.5"/>
+          <TextButton onClick="combLfoOnButton" id="combLfoOn" background-color="FF081C15"
+                      pos-x="15" pos-y="0" pos-width="15" pos-height="22" width=""
+                      margin="1" padding="1" caption="" lookAndFeel="FoleysFinest"
+                      button-off-text="" button-on-color="D8F3DC" button-color="1B4332"/>
+          <View flex-grow="18" background-color="FF081C15"/>
+        </View>
+        <View margin="0" id="CombLFOModule" flex-grow="10" background-color="FF081C15"
+              padding="" border="">
+          <Slider flex-grow="5" padding="0" border="0" slider-type="rotary-horizontal-vertical"
                   slider-textbox="no-textbox" caption="LFO" id="combFOsc" radius=""
-                  flex-shrink="1" margin="0" parameter="combLfoFreq"/>
-          <Slider flex-grow="5" border="1" padding="0" parameter="combMod" slider-type="rotary-horizontal-vertical"
+                  flex-shrink="1" margin="0" parameter="combLfoFreq" caption-color="FFD8F3DC"
+                  rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"/>
+          <Slider flex-grow="5" border="0" padding="0" parameter="combMod" slider-type="rotary-horizontal-vertical"
                   slider-textbox="no-textbox" caption="RATE" id="combMod" pos-height="100%"
-                  pos-width="45.625%" pos-y="0%" margin="0"/>
-        </View>
-        <View border="1" padding="0" margin="0">
-          <TextButton id="gainLfoOn" onClick="gainLfoOnButton"/>
-          <Slider id="Gain" parameter="gainDb" slider-type="rotary-horizontal-vertical"
-                  slider-textbox="no-textbox" title="" caption="GAIN" padding="0"
-                  border="1" margin="0"/>
-          <Slider padding="0" border="1" slider-type="rotary-horizontal-vertical"
-                  slider-textbox="no-textbox" caption="LFO" id="gainFOsc" radius=""
-                  flex-shrink="1" margin="0" parameter="gainLfoFreq" flex-grow="1.0"/>
-          <Slider id="GainRate" parameter="gainMod" slider-type="rotary-horizontal-vertical"
-                  slider-textbox="no-textbox" title="" caption="RATE" padding="0"
-                  border="1" margin="0"/>
+                  pos-width="45.625%" pos-y="0%" margin="0" caption-color="FFD8F3DC"
+                  rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"/>
         </View>
       </View>
-      <View flex-direction="column">
-        <ComboBox parameter="combType"/>
-        <ComboBox parameter="synthType"/>
+      <View margin="5" padding="1" background-color="081C15" border-color="D8F3DC"
+            border="1">
+        <Plot source="input" background-color="FF081C15" plot-color="FF40916C"
+              plot-fill-color="FF95D5B2" flex-grow="60"/>
+        <View background-color="081C15"/>
       </View>
-      <Plot source="input"/>
     </View>
-    <View border="0" padding="0" margin="0">
-      <KeyboardComponent caption-size="" caption="" title="" tooltip="" margin="0" padding="1"
-                         border="2" border-color="FF000000" min-width="" class="nomargin"
-                         id="key" width="" pos-x="" flex-grow="40"/>
-      <Meter source="levelInput" margin="0" padding="0" background-color="FF2B2626"
-             bar-background-color="FF1F1717" outline-color="FF000000" bar-fill-color="FF91F834"
+    <View border="0" padding="0" margin="0" id="Keyboard">
+      <KeyboardComponent caption-size="" title="" tooltip="" margin="0" padding="0" border="0"
+                         min-width="" class="nomargin" id="key" width="" pos-x="" flex-grow="40"
+                         border-color="" background-color="081C15" white-note-color="081C15"
+                         black-note-color="FF5A9983" key-separator-line-color="D8F3DC"
+                         mouse-over-color="D8F3DC" key-down-color="D8F3DC" caption=""/>
+      <Meter source="levelInput" margin="0" padding="0" background-color="081C15"
+             bar-background-color="081C15" outline-color="1B4332" bar-fill-color="D8F3DC"
              tickmark-color="FFFF0000"/>
     </View>
   </View>
