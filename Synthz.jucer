@@ -18,9 +18,17 @@
             file="Source/VirtualKeyboardComponent.h"/>
       <FILE id="dFGMbh" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="I1oeLy" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="YY0heJ" name="RippleComb.cpp" compile="1" resource="0" file="Source/RippleComb.cpp"/>
+      <FILE id="i7Nr8U" name="RippleComb.h" compile="0" resource="0" file="Source/RippleComb.h"/>
+      <FILE id="hoJWOa" name="RippleFO.cpp" compile="1" resource="0" file="Source/RippleFO.cpp"/>
+      <FILE id="vFWrbu" name="RippleFO.h" compile="0" resource="0" file="Source/RippleFO.h"/>
+      <FILE id="XPeVwt" name="RippleGain.cpp" compile="1" resource="0" file="Source/RippleGain.cpp"/>
+      <FILE id="OzUmog" name="RippleGain.h" compile="0" resource="0" file="Source/RippleGain.h"/>
+      <FILE id="TvaP3x" name="Synthz.xml" compile="0" resource="1" file="Source/Synthz.xml"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
@@ -29,11 +37,14 @@
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
@@ -55,6 +66,10 @@
         <MODULEPATH id="juce_graphics" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules/foleys_gui_magic/modules"/>
+        <MODULEPATH id="juce_dsp" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="G:/Utility Softwares/JUCE/JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>
   </EXPORTFORMATS>

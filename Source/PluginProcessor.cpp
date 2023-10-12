@@ -20,16 +20,17 @@ SynthzAudioProcessor::SynthzAudioProcessor()
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
                        ), parameters(*this, nullptr, juce::Identifier("Ripple"), {
-         std::make_unique<juce::AudioParameterInt>("synthType","SynthType",0,3,0),
+         std::make_unique<juce::AudioParameterChoice>("synthType","SynthType",juce::StringArray("Sine","Sawtooth","Triangle","Square"),1),
          std::make_unique<juce::AudioParameterInt>("cutOff","CutOff",10.f,100.f,10.f),
          std::make_unique<juce::AudioParameterFloat>("resA","ResA",-1.f,1.f,0.5f),
          std::make_unique<juce::AudioParameterFloat>("resB","ResB",0.01f,1.f,1.0f),
          std::make_unique<juce::AudioParameterFloat>("gainDb","Gain",-24.f,3.f,0.f),
-         std::make_unique<juce::AudioParameterBool>("combOn","CombOn",false),
-         std::make_unique<juce::AudioParameterBool>("combLfoOn","CombLfoOn",false),
-         std::make_unique<juce::AudioParameterBool>("gainLfoOn","GainLfoOn",false),
-         std::make_unique<juce::AudioParameterInt>("lfoFreq","LfoFreq",1,20,2),
-         std::make_unique<juce::AudioParameterChoice>("combType","CombType",juce::StringArray("Notch I","Notch II","Peak I","Peak II"),2),
+         std::make_unique<juce::AudioParameterBool>("combOn","CombOn",true),
+         std::make_unique<juce::AudioParameterBool>("combLfoOn","CombLfoOn",true),
+         std::make_unique<juce::AudioParameterBool>("gainLfoOn","GainLfoOn",true),
+         std::make_unique<juce::AudioParameterInt>("combLfoFreq","CombLfoFreq",1,20,2),
+         std::make_unique<juce::AudioParameterInt>("gainLfoFreq","gainLfoFreq",1,20,2),
+         std::make_unique<juce::AudioParameterChoice>("combType","CombType",juce::StringArray("Notch I","Notch II","Peak I","Peak II"),1),
          std::make_unique<juce::AudioParameterFloat>("combMod","CombMod",0.0f,10.0f,2.0f),
          std::make_unique<juce::AudioParameterFloat>("gainMod","GainMod",0.0f,10.0f,3.0f)
                            })
@@ -43,6 +44,9 @@ SynthzAudioProcessor::SynthzAudioProcessor()
     combFilter = RippleComb();
     gainMultiplier = RippleGain();
 
+    synthType = parameters.getRawParameterValue("synthType");
+
+
     cutOff = parameters.getRawParameterValue("cutOff");
     resA = parameters.getRawParameterValue("resA");
     resB = parameters.getRawParameterValue("resB");
@@ -50,7 +54,8 @@ SynthzAudioProcessor::SynthzAudioProcessor()
 
     combLfoOn = parameters.getRawParameterValue("combLfoOn");
     gainLfoOn = parameters.getRawParameterValue("gainLfoOn");
-    lfoFreq = parameters.getRawParameterValue("lfoFreq");
+    combLfoFreq = parameters.getRawParameterValue("combLfoFreq");
+    gainLfoFreq = parameters.getRawParameterValue("gainLfoFreq");
 
     combType = parameters.getRawParameterValue("combType");
 
@@ -58,6 +63,11 @@ SynthzAudioProcessor::SynthzAudioProcessor()
     combMod = parameters.getRawParameterValue("combMod");
     gainMod = parameters.getRawParameterValue("gainMod");
 
+    magicState.addTrigger("combOnButton", [&] { *combOn = !*combOn; });
+    magicState.addTrigger("combLfoOnButton", [&] { *combLfoOn = !*combLfoOn; });
+    magicState.addTrigger("gainLfoOnButton", [&] { *gainLfoOn = !*gainLfoOn; });
+
+    
     juce::MidiKeyboardState& midiKeyBoardState = magicState.getKeyboardState();
     midiKeyBoardState.addListener(this);
 
@@ -203,7 +213,7 @@ void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
     for (int i = 0; i < oscillators.size(); i++)
     {
-        tempBuffer=oscillators[i]->processBlock(buffer);
+        tempBuffer=oscillators[i]->processBlock(buffer,*synthType);
         for (int j = 0;j < tempBuffer.getNumChannels(); j++)
         {
             buffer.addFrom(j, 0, tempBuffer.getReadPointer(j),tempBuffer.getNumSamples(), 0.5 / oscillators.size());
@@ -216,9 +226,9 @@ void SynthzAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
    
 
     //FX Processing
-    if(combOn)
-        combFilter.processBlock(buffer, *cutOff, *resB, *resA, *combType, *lfoFreq, *combLfoOn, *combMod);
-    gainMultiplier.processBlock(buffer, *gainDb, *lfoFreq, *gainLfoOn, *gainMod);
+    if(*combOn)
+        combFilter.processBlock(buffer, *cutOff, *resB, *resA, *combType, *combLfoFreq, *combLfoOn, *combMod);
+    gainMultiplier.processBlock(buffer, *gainDb, *gainLfoFreq, *gainLfoOn, *gainMod);
    
 }
 
@@ -233,14 +243,14 @@ void SynthzAudioProcessor::handleNoteOn(juce::MidiKeyboardState* keyState, int m
 {
 
     auto message = juce::MidiMessage::noteOn(midiChannel, midiNoteNumber, velocity);
-    message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001);
+    //message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001);
     processMidiOn(message);
 }
 
 void SynthzAudioProcessor::handleNoteOff(juce::MidiKeyboardState* keyState, int midiChannel, int midiNoteNumber, float /*velocity*/)
 {
     auto message = juce::MidiMessage::noteOff(midiChannel, midiNoteNumber);
-    message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001);
+    //message.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001);
     processMidiOff(message);
 }
 
@@ -260,4 +270,8 @@ void SynthzAudioProcessor::processMidiOff(juce::MidiMessage message)
             oscillators.erase(oscillators.begin() + i);
         }
     }
+}
+void SynthzAudioProcessor::combToggle()
+{
+    combOn = false;
 }

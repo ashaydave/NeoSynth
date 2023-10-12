@@ -51,22 +51,22 @@
         <CONFIGURATION isDebug="0" name="Release" defines="FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
         <MODULEPATH id="foleys_gui_magic" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
-        <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="G:\Utility Softwares\JUCE\JUCE\modules"/>
       </MODULEPATHS>
     </VS2019>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosDevelopmentTeamID="S6TGF8CL35" smallIcon="o1fhw1"

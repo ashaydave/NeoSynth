@@ -58,6 +58,8 @@ public:
     void handleNoteOff(juce::MidiKeyboardState*, int midiChannel, int midiNoteNumber, float /*velocity*/) override;
     void handleNoteOn(juce::MidiKeyboardState*, int /*midiChannel*/, int /*midiNoteNumber*/, float /*velocity*/) override;
     
+
+    void combToggle();
     //==============================================================================
    // void getStateInformation (juce::MemoryBlock& destData) override;
     //void setStateInformation (const void* data, int sizeInBytes) override;
@@ -93,7 +95,8 @@ private:
     std::atomic<float>* combOn = nullptr;
     std::atomic<float>* combLfoOn = nullptr;
     std::atomic<float>* gainLfoOn = nullptr;
-    std::atomic<float>* lfoFreq = nullptr;
+    std::atomic<float>* combLfoFreq = nullptr;
+    std::atomic<float>* gainLfoFreq = nullptr;
 
     std::atomic<float>* combType = nullptr;
 

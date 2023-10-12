@@ -19,7 +19,7 @@ public:
     ~Oscillator();
 
     void prepareToPlay(float sampleRate, int samplesPerBlock, int numOutputChannels);
-    juce::AudioBuffer<float> processBlock(juce::AudioBuffer<float>& buffer);
+    juce::AudioBuffer<float> processBlock(juce::AudioBuffer<float>& buffer,int synthType);
     void noteOn(float fOsc);
     void noteOff();
 
