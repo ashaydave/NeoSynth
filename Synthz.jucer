@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="lMlbgc" name="Synthz" projectType="audioplug" useAppConfig="0"
+<JUCERPROJECT id="lMlbgc" name="Neo" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
-  <MAINGROUP id="SdNIMk" name="Synthz">
+  <MAINGROUP id="SdNIMk" name="Neo">
+    <GROUP id="{F74F90A5-BEB0-A1B1-EA29-96DD382888B9}" name="Resources">
+      <FILE id="hlWRy5" name="Crush.png" compile="0" resource="1" file="../Labels/Crush.png"/>
+      <FILE id="znhWQZ" name="Cutoff.png" compile="0" resource="1" file="../Labels/Cutoff.png"/>
+      <FILE id="ZSYUWv" name="Damp.png" compile="0" resource="1" file="../Labels/Damp.png"/>
+      <FILE id="ZjvkeE" name="Feddback.png" compile="0" resource="1" file="../Labels/Feddback.png"/>
+      <FILE id="uBJeGS" name="Level.png" compile="0" resource="1" file="../Labels/Level.png"/>
+      <FILE id="bQnBNW" name="A.png" compile="0" resource="1" file="../Rest of the labels/A.png"/>
+      <FILE id="iiKFQG" name="D.png" compile="0" resource="1" file="../Rest of the labels/D.png"/>
+      <FILE id="A9gRby" name="Filter.png" compile="0" resource="1" file="../Rest of the labels/Filter.png"/>
+      <FILE id="bTIXhA" name="Gain.png" compile="0" resource="1" file="../Rest of the labels/Gain.png"/>
+      <FILE id="QJdzyn" name="NEO.png" compile="0" resource="1" file="../Rest of the labels/NEO.png"/>
+      <FILE id="TnN316" name="R.png" compile="0" resource="1" file="../Rest of the labels/R.png"/>
+      <FILE id="roGqKH" name="S.png" compile="0" resource="1" file="../Rest of the labels/S.png"/>
+      <FILE id="NUP7Gc" name="Mix.png" compile="0" resource="1" file="../Labels/Mix.png"/>
+      <FILE id="MY4Rx9" name="NeoNew.png" compile="0" resource="1" file="../NeoNew.png"/>
+      <FILE id="mqqeM2" name="Delay.png" compile="0" resource="1" file="../ReverbDelay/Delay.png"/>
+      <FILE id="itRw4q" name="Reverb.png" compile="0" resource="1" file="../ReverbDelay/Reverb.png"/>
+      <FILE id="Oz5579" name="MOD DEPTH.png" compile="0" resource="1" file="../Labels/MOD DEPTH.png"/>
+      <FILE id="Lj5NAt" name="MOD SPEED.png" compile="0" resource="1" file="../Labels/MOD SPEED.png"/>
+      <FILE id="KTUPpf" name="OSC 1.png" compile="0" resource="1" file="../Labels/OSC 1.png"/>
+      <FILE id="nKJOXK" name="OSC 2.png" compile="0" resource="1" file="../Labels/OSC 2.png"/>
+      <FILE id="f0yFTr" name="Delay.png" compile="0" resource="1" file="../ReverbDelay_New/Delay.png"/>
+      <FILE id="LKi7xq" name="Reverb.png" compile="0" resource="1" file="../ReverbDelay_New/Reverb.png"/>
+      <FILE id="z6sqxX" name="OSC 3.png" compile="0" resource="1" file="../Labels/OSC 3.png"/>
+      <FILE id="FZsZEQ" name="Res.png" compile="0" resource="1" file="../Labels/Res.png"/>
+      <FILE id="C0PY9S" name="Size.png" compile="0" resource="1" file="../Labels/Size.png"/>
+      <FILE id="PtmaU2" name="Time.png" compile="0" resource="1" file="../Labels/Time.png"/>
+      <FILE id="j6RPJ2" name="Width.png" compile="0" resource="1" file="../Labels/Width.png"/>
+    </GROUP>
     <GROUP id="{93755DD3-9A5A-DF1C-AB47-766DD93A2BA2}" name="Source">
+      <FILE id="RWx7xc" name="Neomagic.xml" compile="0" resource="1" file="Source/Neomagic.xml"/>
       <FILE id="i1mGqn" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
+      <FILE id="WQTQYZ" name="Neo.xml" compile="0" resource="1" file="Source/Neo.xml"/>
       <FILE id="zgrPlU" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
       <FILE id="OKiR70" name="PluginEditor.cpp" compile="1" resource="0"
@@ -17,13 +48,33 @@
       <FILE id="KeH6IB" name="VirtualKeyboardComponent.h" compile="0" resource="0"
             file="Source/VirtualKeyboardComponent.h"/>
       <FILE id="dFGMbh" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="fRwVAT" name="magic.xml" compile="0" resource="1" file="modules/foleys_gui_magic/Examples/EqualizerExample/Resources/magic.xml"/>
       <FILE id="I1oeLy" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="tfMxqY" name="DelayData.cpp" compile="1" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Delay/DelayData.cpp"/>
+      <FILE id="ORBRhp" name="DelayData.h" compile="0" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Delay/DelayData.h"/>
+      <FILE id="NJjjuA" name="BitcrusherData.cpp" compile="1" resource="0"
+            file="C:/Users/soura/Downloads/Effects/Effects/Bitcrusher/BitcrusherData.cpp"/>
+      <FILE id="vkWpmP" name="MoogVA.h" compile="0" resource="0" file="Source/MoogVA.h"/>
+      <FILE id="aPklON" name="AllPassFilter.cpp" compile="1" resource="0"
+            file="C:/Users/soura/Downloads/Effects/Effects/Reverb/AllPassFilter.cpp"/>
+      <FILE id="QRJOWH" name="AllPassFilter.h" compile="0" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Reverb/AllPassFilter.h"/>
+      <FILE id="i5J4EO" name="CombFilter.cpp" compile="1" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Reverb/CombFilter.cpp"/>
+      <FILE id="klZuFM" name="MoogVA.cpp" compile="1" resource="0" file="Source/MoogVA.cpp"/>
+      <FILE id="EgK2Ou" name="CombFilter.h" compile="0" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Reverb/CombFilter.h"/>
+      <FILE id="wX2Hae" name="GetAGripverb.cpp" compile="1" resource="0"
+            file="C:/Users/soura/Downloads/Effects/Effects/Reverb/GetAGripverb.cpp"/>
+      <FILE id="doOpZP" name="GetAGripverb.h" compile="0" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Reverb/GetAGripverb.h"/>
+      <FILE id="PhhsFu" name="Tuning.h" compile="0" resource="0" file="C:/Users/soura/Downloads/Effects/Effects/Reverb/Tuning.h"/>
+      <FILE id="OEliLN" name="BitcrusherData.h" compile="0" resource="0"
+            file="C:/Users/soura/Downloads/Effects/Effects/Bitcrusher/BitcrusherData.h"/>
       <FILE id="YY0heJ" name="RippleComb.cpp" compile="1" resource="0" file="Source/RippleComb.cpp"/>
       <FILE id="i7Nr8U" name="RippleComb.h" compile="0" resource="0" file="Source/RippleComb.h"/>
       <FILE id="hoJWOa" name="RippleFO.cpp" compile="1" resource="0" file="Source/RippleFO.cpp"/>
       <FILE id="vFWrbu" name="RippleFO.h" compile="0" resource="0" file="Source/RippleFO.h"/>
       <FILE id="XPeVwt" name="RippleGain.cpp" compile="1" resource="0" file="Source/RippleGain.cpp"/>
       <FILE id="OzUmog" name="RippleGain.h" compile="0" resource="0" file="Source/RippleGain.h"/>
+      <FILE id="f4Kh79" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
+      <FILE id="EMGrL4" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
       <FILE id="TvaP3x" name="Synthz.xml" compile="0" resource="1" file="Source/Synthz.xml"/>
     </GROUP>
   </MAINGROUP>
@@ -46,7 +97,8 @@
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"
+               FOLEYS_ENABLE_BINARY_DATA="1" FOLEYS_SHOW_GUI_EDITOR_PALLETTE="0"/>
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022">
       <CONFIGURATIONS>
