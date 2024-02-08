@@ -19,12 +19,13 @@ public:
     ~Oscillator();
 
     void prepareToPlay(float sampleRate, int samplesPerBlock, int numOutputChannels);
-    juce::AudioBuffer<float> processBlock(juce::AudioBuffer<float>& buffer,int synthType);
+    juce::AudioBuffer<float> processBlock(juce::AudioBuffer<float>& buffer,int synthType,int offset);
     void noteOn(float fOsc);
     void noteOff();
 
     float sampleRate, buff, inc, fOsc, onOff;
     int noteNumber;
+    float prevFOsc;
     
 private:
     //float sampleRate, buff, inc, fOsc, onOff;

@@ -100,16 +100,16 @@ void SynthzAudioProcessorEditor::handleNoteOff(juce::MidiKeyboardState* keyState
     m.setTimeStamp(juce::Time::getMillisecondCounterHiRes() * 0.001);
     //postMessageToList(m, "On-Screen Keyboard");
     //audioProcessor.oscillator.noteOff();
-    for (int i = 0; i < audioProcessor.oscillators.size(); i++)
+    for (int i = 0; i < audioProcessor.oscillators1.size(); i++)
     {
         //if(oscillators[it].)
         //DBG(juce::String(oscillators[i].fOsc) + " zozododo " + juce::String(currentMessage.getMidiNoteInHertz(currentMessage.getNoteNumber())));
-        if (audioProcessor.oscillators[i]->noteNumber == m.getNoteNumber())
+        if (audioProcessor.oscillators1[i]->noteNumber == m.getNoteNumber())
         {
             //delete oscillators[i];
 
             DBG("\n\nopopopopopopoopopopopopopopopopopo\n\n");
-            delete audioProcessor.oscillators[i];
+            delete audioProcessor.oscillators1[i];
             //audioProcessor.oscillators.erase(audioProcessor.oscillators.begin() + i);
         }
     }

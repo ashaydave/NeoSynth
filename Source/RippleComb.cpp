@@ -72,7 +72,7 @@ void RippleComb::processBlock(juce::AudioBuffer<float>& buffer, int cutOff, floa
             
             }
             
-            if (combLfoOn)
+            if (lfoFreq>0)
                 readIndex = readIndex + combMod * (lfo.getLfoVal(lfoFreq));
             
             readIndex = (readIndex + 1) % delayBufferLength;

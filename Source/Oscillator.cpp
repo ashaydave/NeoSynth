@@ -22,6 +22,7 @@ Oscillator::Oscillator(float sampleRate, float numChannels,float samplesPerBlock
     inc = 0.0f;
     this->oscBuffer = juce::AudioBuffer<float>(numChannels, samplesPerBlock);
     onOff = 1.0f;
+    this->prevFOsc = fOsc;
 }
 
 Oscillator::~Oscillator()
@@ -38,12 +39,13 @@ void Oscillator::prepareToPlay(float sampleRate, int samplesPerBlock, int numOut
     onOff = 0.0f;
 }
 
-juce::AudioBuffer<float> Oscillator::processBlock(juce::AudioBuffer<float>& buffer,int synthType)
+juce::AudioBuffer<float> Oscillator::processBlock(juce::AudioBuffer<float>& buffer,int synthType,int offSet)
 {
     oscBuffer.clear();
-
+    //if(fOsc!=fOsc+)
     for (int sample = 0; sample < oscBuffer.getNumSamples();sample++)
     {
+        
         inc = fOsc / sampleRate;
         buff += inc;
         //buff = buff + inc;
@@ -75,6 +77,7 @@ void Oscillator::noteOn(float fOsc)
 {
     this->fOsc = fOsc;
     this->onOff = 1.0f;
+    this->prevFOsc = fOsc;
 }
 void Oscillator::noteOff()
 {

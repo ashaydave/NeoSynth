@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<magic>
+  <Styles>
+    <Style name="default">
+      <Nodes/>
+      <Classes>
+        <plot-view border="2" background-color="black" border-color="silver" display="contents"/>
+        <nomargin margin="0" padding="0" border="0"/>
+        <group margin="5" padding="5" border="2" flex-direction="column"/>
+        <transparent background-color="transparentblack"/>
+      </Classes>
+      <Types>
+        <Slider border="0" slider-textbox="textbox-below"/>
+        <ToggleButton border="0" max-height="50" caption-size="0" text="Active"/>
+        <TextButton border="0" max-height="50" caption-size="0"/>
+        <ComboBox border="0" max-height="50" caption-size="0"/>
+        <Plot border="0" margin="0" padding="0" background-color="00000000"
+              radius="0"/>
+        <XYDragComponent border="0" margin="0" padding="0" background-color="00000000"
+                         radius="0"/>
+      </Types>
+      <Palettes>
+        <default/>
+      </Palettes>
+    </Style>
+  </Styles>
+  <View id="root" resizable="1" resize-corner="1" flex-direction="column"
+        margin="0" padding="0" focus-container="focus-container" width="1100"
+        height="900" min-width="900" min-height="700" caption="" border="0"
+        background-color="FF40916C">
+    <View class="parameters nomargin" margin="0" background-color="081C15">
+      <View id="ADSR+FILTER" flex-direction="column" border-color="081C15"
+            border="0" padding="" margin="">
+        <View id="ADSR" flex-direction="row" flex-grow="3" background-color="081C15"
+              margin="2" padding="2" border="2" radius="5" border-color="FF95D5B2">
+          <Slider id="A" parameter="attack" caption="  " background-color="081C15"
+                  slider-background="1B4332" slider-thumb="D8F3DC" slider-track="FF95D5B2"
+                  slider-textbox="no-textbox" caption-placement="centred-bottom"
+                  background-image="A_png" image-placement="stretch" caption-size="25"/>
+          <Slider id="D" parameter="decay" caption="  " background-color="081C15"
+                  slider-background="1B4332" slider-thumb="D8F3DC" slider-track="FF95D5B2"
+                  slider-textbox="no-textbox" caption-placement="centred-bottom"
+                  background-image="D_png" image-placement="stretch" caption-size="25"/>
+          <Slider id="S" parameter="sustain" caption="  " background-color="081C15"
+                  slider-background="1B4332" slider-thumb="D8F3DC" slider-track="FF95D5B2"
+                  slider-textbox="no-textbox" caption-placement="centred-bottom"
+                  image-placement="stretch" background-image="S_png" caption-size="25"/>
+          <Slider id="R" parameter="release" slider-textbox="no-textbox" caption="  "
+                  background-color="081C15" slider-background="1B4332" slider-thumb="D8F3DC"
+                  slider-track="FF95D5B2" rotary-fill="" rotary-outline="" caption-placement="centred-bottom"
+                  background-image="R_png" image-placement="stretch" caption-size="25"/>
+        </View>
+        <View id="FILTER" flex-grow="2" flex-direction="column" background-color="081C15"
+              margin="2" padding="2" border="2" radius="5" border-color="FF95D5B2">
+          <View tab-height="" flex-shrink="1" flex-grow="0.5" margin="0" padding="0"
+                background-color="FF081C15" id="FilterOn" pos-x="0.895522%" pos-y="2.5788%"
+                pos-width="100%" pos-height="10.3152%" border="0">
+            <View background-color="FF081C15" margin="0" padding="0" border="0"/>
+            <View background-color="FF081C15" margin="0" padding="0" border="0"/>
+            <View flex-grow="0.15" background-color="081C15" margin="0" padding="0"/>
+            <View flex-grow="10" id="FiltType" background-color="FF081C15" flex-direction="column"
+                  background-image="Filter_png" image-placement="fill" caption="            "
+                  caption-placement="centred-left">
+              <View flex-grow="0.3"/>
+              <ComboBox parameter="filtType" id="combType" caption="" caption-color="D8F3DC"
+                        margin="0" padding="0" border="0" background-color="081C15" tab-caption=""
+                        lookAndFeel="FoleysFinest" combo-background="081C15" combo-text="D8F3DC"
+                        combo-outline="1B4332" combo-button="40916C" combo-arrow="D8F3DC"
+                        combo-focused-outline="1B4332" combo-menu-background="081C15"
+                        combo-menu-background-highlight="40916C" combo-menu-text="D8F3DC"
+                        combo-menu-text-highlight="D8F3DC" flex-grow="1" caption-placement="centred-left"/>
+            </View>
+            <View background-color="FF081C15" flex-grow="2"/>
+          </View>
+          <View lookAndFeel="FoleysFinest" id="FilterModule" flex-grow="1" background-color="FF081C15"
+                margin="" padding="" border="">
+            <Slider id="combCutOff" caption="" title="" lookAndFeel="FoleysFinest"
+                    parameter="cutOff" slider-type="rotary-horizontal-vertical" slider-textbox="no-textbox"
+                    flex-grow="1" margin="0" padding="0" border="0" caption-color="FFD8F3DC"
+                    rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"
+                    caption-placement="centred-bottom" caption-size="15" background-image="Cutoff_png"
+                    image-placement="stretch"/>
+            <Slider id="resA" caption="" parameter="resA" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" flex-grow="1" margin="0" padding="0"
+                    min-height="" border="0" background-color="FF081C15" tab-color="FFFF0000"
+                    lookAndFeel="FoleysFinest" rotary-outline="FF40916C" rotary-fill="FF95D5B2"
+                    slider-track="" slider-thumb="" slider-background="" slider-text=""
+                    caption-color="FFD8F3DC" caption-size="15" caption-placement="centred-bottom"
+                    background-image="Res_png" image-placement="stretch"/>
+            <Slider flex-grow="1" padding="0" border="0" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" caption="" id="combFOsc" radius=""
+                    flex-shrink="1" margin="0" parameter="combLfoFreq" caption-color="FFD8F3DC"
+                    rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"
+                    caption-size="15" caption-placement="centred-bottom" background-image="MOD_SPEED_png"
+                    image-placement="stretch"/>
+            <Slider flex-grow="1" border="0" padding="0" parameter="combMod" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" caption="" id="combMod" pos-height="100%"
+                    pos-width="45.625%" pos-y="0%" margin="0" caption-color="FFD8F3DC"
+                    rotary-fill="FF95D5B2" rotary-outline="FF40916C" background-color="FF081C15"
+                    caption-placement="centred-bottom" caption-size="15" background-image="MOD_DEPTH_png"
+                    image-placement="stretch"/>
+          </View>
+        </View>
+      </View>
+      <View flex-direction="column" background-color="081C15" id="OSCILLATOR+ANALYZER"
+            margin="0" padding="0" border="0">
+        <View flex-grow="0.42" background-color="081C15" caption="          "
+              caption-size="80" margin="0" padding="0" border="0" background-image="NeoNew_png"
+              image-placement="centred" id="Neo"/>
+        <View flex-direction="column-reverse" margin="2" padding="2" border="2"
+              radius="5" border-color="FF95D5B2">
+          <View id="ANALYZER" margin="2" padding="2" background-color="FF081C15"
+                border="2" border-color="FF95D5B2" radius="4">
+            <Plot source="input" background-color="FF081C15" plot-color="FF40916C"
+                  plot-fill-color="FF95D5B2" flex-grow="60"/>
+          </View>
+          <View flex-grow="1" background-color="081C15" border="0" padding="0"
+                margin="0" id="Synth3">
+            <View caption="           " caption-placement="centred-left" background-color="081C15"
+                  flex-direction="column" margin="0" padding="0" border="0" background-image="OSC_3_png"
+                  image-placement="stretch">
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+              <ComboBox flex-grow="2" parameter="synthType2" background-color="081C15"
+                        id="SynthType" padding="2" border="" margin="3" combo-background="081C15"
+                        combo-text="D8F3DC" combo-outline="1B4332" combo-arrow="D8F3DC"
+                        combo-focused-outline="1B4332" combo-menu-background="081C15"
+                        combo-button="40916C" combo-menu-text="D8F3DC" combo-menu-text-highlight="D8F3DC"
+                        combo-menu-background-highlight="40916C"/>
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+            </View>
+            <Slider parameter="oscillators3Level" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" flex-grow="0.72" margin="0" padding="0"
+                    border="0" caption="" caption-size="15" caption-placement="centred-bottom"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    border-color="" background-color="FF081C15" background-image="Level_png"/>
+          </View>
+          <View flex-grow="1" background-color="081C15" border="0" padding="0"
+                margin="0" id="Synth2" caption="">
+            <View caption="           " caption-placement="centred-left" background-color="081C15"
+                  flex-direction="column" margin="0" padding="0" border="0" background-image="OSC_2_png"
+                  image-placement="stretch">
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+              <ComboBox flex-grow="2" parameter="synthType2" background-color="081C15"
+                        id="SynthType" padding="2" border="" margin="3" combo-background="081C15"
+                        combo-text="D8F3DC" combo-outline="1B4332" combo-arrow="D8F3DC"
+                        combo-focused-outline="1B4332" combo-menu-background="081C15"
+                        combo-button="40916C" combo-menu-text="D8F3DC" combo-menu-text-highlight="D8F3DC"
+                        combo-menu-background-highlight="40916C"/>
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+            </View>
+            <Slider parameter="oscillators2Level" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" flex-grow="0.72" margin="0" padding="0"
+                    border="0" caption="" caption-size="15" caption-placement="centred-bottom"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    border-color="" background-color="FF081C15" background-image="Level_png"
+                    image-placement="centred"/>
+          </View>
+          <View flex-grow="1" background-color="081C15" border="0" padding="0"
+                margin="0" id="Synth1">
+            <View caption="          " caption-placement="centred-left" background-color="081C15"
+                  flex-direction="column" margin="0" padding="0" border="0" background-image="OSC_1_png"
+                  image-placement="stretch">
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+              <ComboBox flex-grow="2" parameter="synthType1" background-color="081C15"
+                        id="SynthType" padding="2" border="" margin="3" combo-background="081C15"
+                        combo-text="D8F3DC" combo-outline="1B4332" combo-arrow="D8F3DC"
+                        combo-focused-outline="1B4332" combo-menu-background="081C15"
+                        combo-button="40916C" combo-menu-text="D8F3DC" combo-menu-text-highlight="D8F3DC"
+                        combo-menu-background-highlight="40916C"/>
+              <View margin="0" padding="0" border="0" background-color="081C15"/>
+            </View>
+            <Slider parameter="oscillators1Level" slider-type="rotary-horizontal-vertical"
+                    slider-textbox="no-textbox" flex-grow="0.72" margin="0" padding="0"
+                    border="0" caption="" caption-size="15" caption-placement="centred-bottom"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    border-color="" background-color="FF081C15" background-image="Level_png"
+                    image-placement="centred"/>
+          </View>
+        </View>
+      </View>
+      <View id="DELAY+REVERB" flex-direction="column" background-color="081C15"
+            padding="0" margin="0" border="0">
+        <View id="Delay" flex-direction="column" caption="          " margin="2"
+              padding="2" border="2" background-color="081C15" background-image="Delay_png2"
+              caption-size="25" image-placement="stretch" radius="5" border-color="FF95D5B2">
+          <View margin="0" padding="5" border="0" background-color="081C15">
+            <Slider parameter="delayTime" slider-thumb="FF95D5B2" slider-track=""
+                    rotary-fill="FF95D5B2" rotary-outline="FF40916C" slider-textbox="no-textbox"
+                    margin="0" padding="0" border="0" background-color="081C15" caption=""
+                    caption-size="15" caption-placement="centred-bottom" background-image="Time_png"
+                    image-placement="stretch"/>
+            <Slider parameter="delayFeedback" slider-thumb="FF95D5B2" slider-track="FF95D5B2"
+                    rotary-fill="FF95D5B2" rotary-outline="FF40916C" slider-textbox="no-textbox"
+                    margin="0" padding="0" border="0" background-color="081C15" caption=""
+                    caption-size="15" caption-placement="centred-bottom" background-image="Feddback_png"
+                    image-placement="stretch" slider-type="rotary-horizontal-vertical"/>
+            <Slider parameter="delayMix" slider-type="rotary-horizontal-vertical"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    slider-textbox="no-textbox" margin="0" padding="0" border="0"
+                    background-color="081C15" caption="" caption-size="15" caption-placement="centred-bottom"
+                    background-image="Mix_png" image-placement="stretch"/>
+          </View>
+        </View>
+        <View id="Reverb" flex-direction="row" caption="" flex-grow="2" background-color="081C15"
+              margin="" padding="" border="" border-color="FF95D5B2">
+          <View caption="          " flex-grow="2" background-color="081C15"
+                margin="2" border="2" padding="10" background-image="Reverb_png2"
+                image-placement="centred" caption-size="38" radius="5" border-color="FF95D5B2">
+            <View margin="0" padding="0" border="0" background-color="081C15" flex-direction="column">
+              <Slider parameter="widthParameter" slider-type="rotary-horizontal-vertical"
+                      margin="0" padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                      slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                      caption="" caption-size="15" caption-placement="centred-bottom"
+                      background-image="Width_png" image-placement="stretch"/>
+              <Slider parameter="wetParameter" slider-type="rotary-horizontal-vertical"
+                      margin="0" padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                      slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                      caption="" caption-size="15" caption-placement="centred-bottom"
+                      background-image="Mix_png" image-placement="stretch"/>
+            </View>
+            <View margin="0" padding="0" border="0" background-color="081C15" flex-direction="column">
+              <Slider parameter="roomSizeParameter" slider-type="rotary-horizontal-vertical"
+                      margin="0" padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                      slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                      caption="" caption-size="15" caption-placement="centred-bottom"
+                      background-image="Size_png" image-placement="stretch"/>
+              <Slider parameter="dampParameter" slider-type="rotary-horizontal-vertical"
+                      margin="0" padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                      slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                      caption="" caption-size="15" caption-placement="centred-bottom"
+                      background-image="Damp_png" image-placement="stretch"/>
+            </View>
+          </View>
+          <View margin="2" padding="10" border="2" flex-direction="column" background-color="081C15"
+                caption-size="25" caption="         " radius="5" border-color="FF95D5B2">
+            <View flex-grow="0.15" background-color="081C15"/>
+            <Slider parameter="bitSpeed" slider-type="rotary-horizontal-vertical"
+                    margin="0" padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    caption="" caption-size="15" caption-placement="centred-bottom"
+                    background-image="Crush_png" image-placement="stretch"/>
+            <Slider parameter="gainDb" slider-type="rotary-horizontal-vertical" margin="0"
+                    padding="0" border="0" background-color="081C15" slider-textbox="no-textbox"
+                    slider-thumb="FF95D5B2" rotary-fill="FF95D5B2" rotary-outline="FF40916C"
+                    caption="" caption-size="15" caption-placement="centred-bottom"
+                    background-image="Gain_png" image-placement="stretch"/>
+          </View>
+        </View>
+        <View flex-grow="0.4" flex-shrink="0" background-color="081C15"/>
+      </View>
+    </View>
+    <View border="0" padding="0" margin="0" id="Keyboard">
+      <KeyboardComponent caption-size="" title="" tooltip="" margin="0" padding="0" border="0"
+                         min-width="" class="nomargin" id="key" width="" pos-x="" flex-grow="40"
+                         border-color="" background-color="081C15" white-note-color="081C15"
+                         black-note-color="FF5A9983" key-separator-line-color="D8F3DC"
+                         mouse-over-color="D8F3DC" key-down-color="D8F3DC" caption=""/>
+      <Meter source="levelInput" margin="0" padding="0" background-color="081C15"
+             bar-background-color="081C15" outline-color="1B4332" bar-fill-color="D8F3DC"
+             tickmark-color="FFFF0000"/>
+    </View>
+  </View>
+</magic>
+ 
